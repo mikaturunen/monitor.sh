@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "node",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
     "outDir": "./release/",
-    "sourceMap": true
+    "sourceMap": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": [
     "source/**/*"
