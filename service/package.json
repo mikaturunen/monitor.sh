@@ -1,0 +1,12 @@
+{
+  "name": "monitor.sh",
+  "version": "0.5.0",
+  "description": "Monitor.sh service layer",
+  "main": "service.js",
+  "repository": "https://github.com/mikaturunen/monitor.sh",
+  "author": "Mika Turunen <mika.turunen@ymail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "server": "^1.0.3"
+  }
+}
