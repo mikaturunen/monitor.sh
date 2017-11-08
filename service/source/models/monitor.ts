@@ -4,14 +4,18 @@ import {
   Column
 } from 'typeorm'
 
-@Entity()
-export class Monitor {
+@Entity('monitors')
+export class Monitors {
     @PrimaryGeneratedColumn()
-    id: number
+    id: string
 
-    @Column()
-    url: string
+    @Column({
+      length: 150
+    })
+    name: string
 
-    @Column()
-    frequencyInMilliseconds: number
+    @Column({
+      length: 250
+    })
+    location: string
 }

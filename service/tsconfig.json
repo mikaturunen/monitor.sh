@@ -7,7 +7,8 @@
     "outDir": "./release/",
     "sourceMap": false,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "lib": [ "es2015" ]
   },
   "include": [
     "source/**/*"

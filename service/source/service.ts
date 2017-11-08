@@ -3,22 +3,37 @@ import 'reflect-metadata'
 import * as server from 'server'
 import * as path from 'path'
 import { createConnection } from 'typeorm'
-import { Monitor } from './models/monitor'
+import { Monitors } from './models/monitor'
+
+import { MonitorHandle } from './services/monitor'
 
 const { get, post } = server.router
+const port = 3333
+const security = {
+  csrf: false
+}
 
 createConnection({
-  type: 'sqlite',
+  type: 'postgres',
   host: 'localhost',
-  port: '3306',
-  username: 'root',
-  password: 'admin',
-  database: 'test',
+  port: 5432,
+  username: 'postgres',
+  password: 'test',
+  database: 'postgres',
+  schema: 'monitor',
   entities: [
-    path.join(__dirname, '/models/*.js')
-  ]
+    Monitors
+  ],
+  synchronize: false,
+  logging: false
 })
+.then(async connection => {
 
-server({ port: 3333 }, [
-  get('/', context => 'monitor.sh online!')
-])
+  server({ port, security }, [
+    get('/', context => 'monitor.sh online!'),
+    post('/monitor/add', async context => MonitorHandle(context.data, connection))
+  ])
+
+  console.log(`monitor.sh connected in port: ${port}.`)
+})
+.catch(error => console.log('Cannot create connection to database: ', error))
